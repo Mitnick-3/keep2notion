@@ -44,8 +44,8 @@ class NotionHelper:
         self.client = Client(auth=os.getenv("NOTION_TOKEN"), log_level=logging.ERROR)
         self.__cache = {}
         self.page_id = self.extract_page_id(os.getenv("NOTION_PAGE"))
-        self.search_database(self.page_id)                
-        for key in self.database_name_dict.keys():  
+        self.search_database(self.page_id)
+        for key in self.database_name_dict.keys():
             if os.getenv(key) != None and os.getenv(key) != "":
                 self.database_name_dict[key] = os.getenv(key)
         self.workout_database_id = self.database_id_dict.get(
