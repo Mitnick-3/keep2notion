@@ -89,9 +89,9 @@ class NotionHelper:
         # 将值写入环境文件
         with open(env_file, "a") as file:
             
-           # file.write(f"DATABASE_ID={database_id}\n")
+            file.write(f"DATABASE_ID={database_id}\n")
 
-    file.write(f"DATABASE_ID=14b0a153d1b28094b193cda79bd650f2\n")
+    #file.write(f"DATABASE_ID=14b0a153d1b28094b193cda79bd650f2\n")
             
     def extract_page_id(self, notion_url):
         # 正则表达式匹配 32 个字符的 Notion page_id
