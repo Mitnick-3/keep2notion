@@ -246,19 +246,23 @@ class NotionHelper:
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def query_all(self, database_id):
-        #"""获取database中所有的数据"""
+    #"""获取数据库全部数据【新版Notion API写法】"""
+    # 第一步：通过database_id获取对应的data_source_id
+        db_info = self.client.databases.retrieve(database_id=database_id)
+        data_source_id = db_info["data_sources"][0]["id"]
+
         results = []
         has_more = True
         start_cursor = None
         while has_more:
-            response = self.client.databases.list_items(
-                database_id=database_id,
+            resp = self.client.data_sources.query(
+                data_source_id=data_source_id,
                 start_cursor=start_cursor,
-                page_size=100,
+                page_size=100
             )
-            start_cursor = response.get("next_cursor")
-            has_more = response.get("has_more")
-            results.extend(response.get("results"))
+            start_cursor = resp.get("next_cursor")
+            has_more = resp.get("has_more")
+            results.extend(resp.get("results"))
         return results
 
     def get_date_icon(self, date, type):
