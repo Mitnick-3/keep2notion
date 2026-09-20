@@ -236,7 +236,7 @@ class NotionHelper:
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def query_all(self, database_id):
-        """获取database中所有的数据"""
+        #"""获取database中所有的数据"""
         results = []
         has_more = True
         start_cursor = None
