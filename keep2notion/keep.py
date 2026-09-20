@@ -46,7 +46,7 @@ def login():
     r = requests.post(LOGIN_API, headers=keep_headers, data=data)
     print("DATABASE_ID =", os.getenv("NOTION_PAGE"))
     if r.ok:
-        print("登录成功")
+        print("登录成功了")
         token = r.json()["data"]["token"]
         print("token")
         return token
