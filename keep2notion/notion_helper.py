@@ -206,7 +206,7 @@ class NotionHelper:
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def query(self, **kwargs):
         kwargs = {k: v for k, v in kwargs.items() if v}
-        return self.client.databases.query(**kwargs)
+        return self.client.databases.list_items(**kwargs)
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def get_block_children(self, id):
@@ -233,7 +233,7 @@ class NotionHelper:
         has_more = True
         start_cursor = None
         while has_more:
-            response = self.client.databases.query(
+            response = self.client.databases.list_items(
                 database_id=database_id,
                 filter=filter,
                 start_cursor=start_cursor,
