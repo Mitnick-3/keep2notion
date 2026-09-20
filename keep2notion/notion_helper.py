@@ -181,7 +181,7 @@ class NotionHelper:
         data_source_id=data_source_id,
         filter=filter
     
-        if len(response.get("results")) == 0:
+        if len(response.get("results")) == 0）:
             parent = {"database_id": id, "type": "database_id"}
             properties["标题"] = get_title(name)
             if icon in ("", None):
