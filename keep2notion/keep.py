@@ -20,7 +20,7 @@ keep_headers = {
 }
 load_dotenv()
 import keep2notion.notion_helper
-print("✅ 正在加载的 notion_helper.py 完整路径：", keep2notion.notion_helper.__file__)
+#print("✅ 正在加载的 notion_helper.py 完整路径：", keep2notion.notion_helper.__file__)
 
 def get_equipment():
     categories = ["shoe","intelligent_wear","sport_facilities","bicycle"]
@@ -49,7 +49,7 @@ def login():
     if r.ok:
         print("登录成功了")
         token = r.json()["data"]["token"]
-        print("token")
+       # print("token")
         return token
     else:
         print(r.text)
@@ -300,7 +300,7 @@ def main():
     keep_headers["Authorization"] = f"Bearer {token}"
     weight_data = get_weight_data()
     if weight_data:
-        insert_weight_data_to_notion(weight_data)
+   #     insert_weight_data_to_notion(weight_data)
     equipments = get_equipment()
     equipment_dict= {}
     if equipments:
