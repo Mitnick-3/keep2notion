@@ -179,8 +179,7 @@ class NotionHelper:
 # 新版查询，替换原来 databases.query
         response = self.client.data_sources.query(
         data_source_id=data_source_id,
-        filter=filter
-    
+        filter=filter,
         if len(response.get("results")) == 0:
             parent = {"database_id": id, "type": "database_id"}
             properties["标题"] = get_title(name)
@@ -201,7 +200,7 @@ class NotionHelper:
             page_id = response.get("results")[0].get("id")
         self.__cache[key] = page_id
         return page_id
-
+    )
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def update_book_page(self, page_id, properties):
         return self.client.pages.update(page_id=page_id, properties=properties)
