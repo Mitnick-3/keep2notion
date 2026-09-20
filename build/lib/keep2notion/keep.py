@@ -9,6 +9,8 @@ import requests
 from keep2notion import utils
 from keep2notion.config import workout_properties_type_dict
 
+print("DATABASE_ID =", os.getenv("NOTION_PAGE"))
+
 LOGIN_API = "https://api.gotokeep.com/v1.1/users/login"
 DATA_API = "https://api.gotokeep.com/pd/v3/stats/detail?dateUnit=all&type=all&lastDate={last_date}"
 LOG_API = "https://api.gotokeep.com/pd/v3/{type}log/{id}"
