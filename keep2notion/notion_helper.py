@@ -251,7 +251,8 @@ class NotionHelper:
         has_more = True
         start_cursor = None
         while has_more:
-            response = self.client.databases.query(
+            #response = self.client.databases.query(
+            responese= self.client.databases.list_items(
                 database_id=database_id,
                 start_cursor=start_cursor,
                 page_size=100,
