@@ -171,7 +171,16 @@ class NotionHelper:
         if key in self.__cache:
             return self.__cache.get(key)
         filter = {"property": "标题", "title": {"equals": name}}
-        response = self.client.databases.query(database_id=id, filter=filter)
+       # response = self.client.databases.query(database_id=id, filter=filter)
+        # 第一步：根据database_id拿到data_source_id（你query_all里面已经写了这段）
+        db_info = self.client.databases.retrieve(database_id=id)
+        data_source_id = db_info["data_sources"][0]["id"]
+
+# 新版查询，替换原来 databases.query
+        response = self.client.data_sources.query(
+        data_source_id=data_source_id,
+        filter=filter
+    
         if len(response.get("results")) == 0:
             parent = {"database_id": id, "type": "database_id"}
             properties["标题"] = get_title(name)
