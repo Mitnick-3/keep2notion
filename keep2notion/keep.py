@@ -19,7 +19,8 @@ keep_headers = {
     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
 }
 load_dotenv()
-
+import keep2notion.notion_helper
+print("✅ 正在加载的 notion_helper.py 完整路径：", keep2notion.notion_helper.__file__)
 
 def get_equipment():
     categories = ["shoe","intelligent_wear","sport_facilities","bicycle"]
