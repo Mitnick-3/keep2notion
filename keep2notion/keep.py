@@ -48,9 +48,7 @@ def login():
     if r.ok:
         print("登录成功")
         token = r.json()["data"]["token"]
-
-print("token")
-        
+        print("token")
         return token
     else:
         print(r.text)
