@@ -14,8 +14,6 @@ DATA_API = "https://api.gotokeep.com/pd/v3/stats/detail?dateUnit=all&type=all&la
 LOG_API = "https://api.gotokeep.com/pd/v3/{type}log/{id}"
 WEIGHT = "https://api.gotokeep.com/feynman/v3/data-center/sub/body-data/detail?indicatorType=WEIGHT&pageSize=10"
 
-print("DATABASE_ID =", os.getenv("NOTION_PAGE"))
-
 keep_headers = {
     "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0",
     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -46,6 +44,7 @@ def login():
     password = os.getenv("KEEP_PASSWORD")
     data = {"mobile": mobile, "password": password,"countryCode":countryCode}
     r = requests.post(LOGIN_API, headers=keep_headers, data=data)
+    print("DATABASE_ID =", os.getenv("NOTION_PAGE"))
     if r.ok:
         print("登录成功")
         token = r.json()["data"]["token"]
