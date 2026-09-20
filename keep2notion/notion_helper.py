@@ -81,6 +81,10 @@ class NotionHelper:
         )      
         if self.day_database_id:
             self.write_database_id(self.day_database_id)
+        print("WORKOUT_DATABASE_NAME env:", os.getenv("WORKOUT_DATABASE_NAME"))
+        print("database_name_dict:", self.database_name_dict)
+        print("database_id_dict:", self.database_id_dict)
+        print("workout_database_id:", self.workout_database_id)
 
     def write_database_id(self, database_id):
         env_file = os.getenv('GITHUB_ENV')
