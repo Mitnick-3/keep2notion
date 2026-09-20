@@ -47,7 +47,7 @@ def login():
     data = {"mobile": mobile, "password": password,"countryCode":countryCode}
     r = requests.post(LOGIN_API, headers=keep_headers, data=data)
     if r.ok:
-        print("登录成功")
+        print("登录成功了")
         token = r.json()["data"]["token"]
         return token
     else:
