@@ -34,6 +34,14 @@ def main():
         page_id = type.get("id")
         notion_token = os.getenv("NOTION_TOKEN")
         title = get_property_value(type.get("properties").get("标题"))
+
+
+        print(f"当前页面标题：{type.get('title')}")
+        props = type.get("properties", {})
+        print(f"页面全部属性keys: {list(props.keys())}")
+        unit_prop = props.get("单位")
+        unit = get_property_value(unit_prop)
+
         unit = get_property_value(type.get("properties").get("单位"))
         print(unit)
         database_filter = f'{{"property": "运动类型", "relation": {{"contains": "{page_id}"}}}}'
