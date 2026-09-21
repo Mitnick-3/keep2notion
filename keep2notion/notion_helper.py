@@ -243,16 +243,21 @@ class NotionHelper:
         results = []
         has_more = True
         start_cursor = None
+
         while has_more:
-            response = self.client.databases.databases.list_items(
+            # ✅ 新版Notion SDK：databases.query
+            response = self.client.databases.query(
                 database_id=database_id,
                 filter=filter,
-                start_cursor=start_cursor,
-                page_size=100,
+                pagination={
+                    "start_cursor": start_cursor,
+                    "page_size": 100,
+                }
             )
             start_cursor = response.get("next_cursor")
-            has_more = response.get("has_more")
-            results.extend(response.get("results"))
+            has_more = response.get("has_more", False)
+            page_results = response.get("results", [])
+            results.extend(page_results)
         return results
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
