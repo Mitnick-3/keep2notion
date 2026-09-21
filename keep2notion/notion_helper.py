@@ -239,20 +239,16 @@ class NotionHelper:
         return self.client.blocks.delete(block_id=block_id)
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
-    def query_all_by_book(self, database_id, filter):
+    def query_all_by_data_source(self, data_source_id, filter):
         results = []
         has_more = True
         start_cursor = None
-
         while has_more:
-            # ✅ 新版Notion SDK：databases.query
-            response = self.client.databases.query(
-                database_id=database_id,
+            response = self.client.data_sources.query(
+                data_source_id=data_source_id,
                 filter=filter,
-                pagination={
-                    "start_cursor": start_cursor,
-                    "page_size": 100,
-                }
+                start_cursor=start_cursor,
+                page_size=100,
             )
             start_cursor = response.get("next_cursor")
             has_more = response.get("has_more", False)
